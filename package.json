@@ -1,0 +1,55 @@
+{
+  "name": "my-lib",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "license": "MIT",
+  "author": "axelhamil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelhamil/my-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axelhamil/my-lib/issues"
+  },
+  "homepage": "https://github.com/axelhamil/my-lib#readme",
+  "keywords": [],
+  "packageManager": "pnpm@10.26.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "!dist/*.map"
+  ],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --fix ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.2",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.6",
+    "@vitest/coverage-v8": "^4.0.18",
+    "publint": "^0.3.17",
+    "semantic-release": "^25.0.3",
+    "tsdown": "^0.20.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}

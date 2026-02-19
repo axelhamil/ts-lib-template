@@ -1,0 +1,22 @@
+# my-lib — Full API Reference
+
+> One-line description
+
+<!-- Complete API documentation for LLM context windows -->
+
+## Exports
+
+All imports come from the package root:
+
+```typescript
+import {} from 'my-lib';
+```
+
+---
+
+## Source
+
+- Repository: https://github.com/axelhamil/my-lib
+- License: MIT
+- Runtime: Node >= 20, ESM only
+- Build: tsdown (ESM, dts, sourcemap, minify)

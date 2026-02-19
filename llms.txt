@@ -1,0 +1,24 @@
+# my-lib
+
+> One-line description
+
+## Public API
+
+<!-- List exported functions and types -->
+
+## Install
+
+```
+pnpm add my-lib
+```
+
+## Quick Example
+
+```typescript
+import {} from 'my-lib';
+```
+
+## Documentation
+
+- Full docs: https://github.com/axelhamil/my-lib
+- Detailed API: llms-full.txt
