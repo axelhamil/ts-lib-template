@@ -1,18 +1,19 @@
 {
-  "name": "my-lib",
+  "name": "ts-lib-template",
   "version": "0.0.0",
-  "description": "",
+  "private": true,
+  "description": "TypeScript library template. ESM, tsdown, vitest, biome, semantic-release. Zero config.",
   "type": "module",
   "license": "MIT",
   "author": "axelhamil",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axelhamil/my-lib.git"
+    "url": "git+https://github.com/axelhamil/ts-lib-template.git"
   },
   "bugs": {
-    "url": "https://github.com/axelhamil/my-lib/issues"
+    "url": "https://github.com/axelhamil/ts-lib-template/issues"
   },
-  "homepage": "https://github.com/axelhamil/my-lib#readme",
+  "homepage": "https://github.com/axelhamil/ts-lib-template#readme",
   "keywords": [],
   "packageManager": "pnpm@10.26.0",
   "engines": {
