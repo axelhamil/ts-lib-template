@@ -22,10 +22,16 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
       "style": {
         "useConst": "error",
         "noNonNullAssertion": "error",
-        "useTemplate": "error"
+        "useTemplate": "error",
+        "useImportType": "error",
+        "useNodejsImportProtocol": "error"
       },
       "suspicious": {
         "noConsole": "error",
@@ -47,6 +53,7 @@
     }
   ],
   "assist": {
+    "enabled": true,
     "actions": {
       "source": {
         "organizeImports": "on"
@@ -54,6 +61,6 @@
     }
   },
   "files": {
-    "includes": ["src/**", "tests/**", "examples/**", "*.ts", "*.json"]
+    "includes": ["**", "!**/dist", "!**/coverage"]
   }
 }

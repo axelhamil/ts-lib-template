@@ -1,24 +1,26 @@
-# my-lib
+# ts-lib-template
 
 > One-line description
 
+ESM-only TypeScript library. Node >= 24, zero runtime dependencies. Built with tsdown, tested with Vitest, linted with Biome, released with semantic-release.
+
 ## Public API
 
-<!-- List exported functions and types -->
+<!-- List exported functions and types from src/index.ts -->
 
 ## Install
 
 ```
-pnpm add my-lib
+pnpm add ts-lib-template
 ```
 
 ## Quick Example
 
 ```typescript
-import {} from 'my-lib';
+import {} from 'ts-lib-template';
 ```
 
 ## Documentation
 
-- Full docs: https://github.com/axelhamil/my-lib
+- Full docs: https://github.com/axelhamil/ts-lib-template
 - Detailed API: llms-full.txt

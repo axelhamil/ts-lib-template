@@ -15,9 +15,14 @@
   },
   "homepage": "https://github.com/axelhamil/ts-lib-template#readme",
   "keywords": [],
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@11.5.2",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "files": [
     "dist",
@@ -30,7 +35,8 @@
     ".": {
       "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "build": "tsdown",
@@ -39,18 +45,22 @@
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
-    "lint:fix": "biome check --fix ."
+    "lint:fix": "biome check --fix .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "biome check . && pnpm typecheck",
+    "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.2",
+    "@arethetypeswrong/core": "^0.18.3",
+    "@biomejs/biome": "^2.4.16",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^12.0.6",
-    "@vitest/coverage-v8": "^4.0.18",
-    "publint": "^0.3.17",
+    "@vitest/coverage-v8": "^4.1.8",
+    "publint": "^0.3.21",
     "semantic-release": "^25.0.3",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
   }
 }
