@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm test:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm check:*)",
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm skills:*)",
+      "Bash(pnpm agents-check:*)",
+      "Bash(./scripts/skills.sh:*)",
+      "Bash(./scripts/agents-check.sh:*)",
+      "Bash(./scripts/commit-gate.sh:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(trash:*)",
+      "Bash(trash-put:*)",
+      "Bash(trash-list:*)",
+      "Bash(trash-restore:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(pnpm publish:*)",
+      "Bash(trash-empty:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Bash(rm:*)",
+      "Bash(unlink:*)",
+      "Bash(trash-rm:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "out=$(\"${CLAUDE_PROJECT_DIR:-.}/scripts/skills.sh\" 2>&1) || true; printf %s \"$out\" | jq -Rs '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:(\"Skill library — see AGENTS.md § The skill loop. A draft is promoted by following it on its second run; a skill followed this session is either amended or has its last-followed date moved.\\n\" + .)}}'",
+            "timeout": 15,
+            "statusMessage": "Reading the skill library"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PROJECT_DIR:-.}/scripts/commit-gate.sh\"",
+            "timeout": 15,
+            "statusMessage": "Checking the skill library"
+          }
+        ]
+      }
+    ]
+  }
+}

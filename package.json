@@ -49,6 +49,8 @@
     "format": "biome format --write .",
     "format:check": "biome format .",
     "check": "biome check . && pnpm typecheck",
+    "skills": "bash scripts/skills.sh",
+    "agents-check": "bash scripts/agents-check.sh",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {

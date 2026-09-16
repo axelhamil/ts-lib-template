@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(pnpm:test*)",
+      "Shell(pnpm:lint*)",
+      "Shell(pnpm:check*)",
+      "Shell(pnpm:typecheck*)",
+      "Shell(pnpm:build*)",
+      "Shell(pnpm:skills*)",
+      "Shell(pnpm:agents-check*)",
+      "Shell(./scripts/skills.sh:*)",
+      "Shell(./scripts/agents-check.sh:*)",
+      "Shell(./scripts/commit-gate.sh:*)",
+      "Shell(git:status*)",
+      "Shell(git:diff*)",
+      "Shell(git:log*)",
+      "Shell(trash:*)",
+      "Shell(trash-put:*)",
+      "Shell(trash-list:*)",
+      "Shell(trash-restore:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Shell(rm:*)",
+      "Shell(unlink:*)",
+      "Shell(trash-rm:*)",
+      "Shell(trash-empty:*)"
+    ]
+  }
+}
