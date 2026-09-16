@@ -17,9 +17,9 @@ A batteries-included TypeScript library template. ESM-only, type-safe, zero-conf
 
 ## Stack
 
-- **TypeScript 6** — `strict` + `noUncheckedIndexedAccess` + `isolatedDeclarations` + `verbatimModuleSyntax`
+- **TypeScript 7** — native compiler, `strict` + `noUncheckedIndexedAccess` + `isolatedDeclarations` + `verbatimModuleSyntax`
 - **[tsdown](https://tsdown.dev)** — Rolldown-powered bundler (ESM, `.d.ts`, minify, treeshake) with built-in [`publint`](https://publint.dev) + [`are-the-types-wrong`](https://arethetypeswrong.github.io)
-- **[Vitest 4](https://vitest.dev)** — tests + V8 coverage (90% thresholds)
+- **[Vitest 5](https://vitest.dev)** — tests + V8 coverage (90% thresholds)
 - **[Biome 2](https://biomejs.dev)** — lint + format in one fast pass
 - **[semantic-release](https://semantic-release.gitbook.io)** — automated versioning & npm publish with provenance
 
@@ -74,8 +74,8 @@ Compatible with [Context7](https://context7.com/) and any tool supporting the ll
 
 ## Compatibility
 
-- Node.js >= 24
-- TypeScript >= 6.0
+- Node.js ^24.11.0 or >= 26
+- TypeScript >= 7.0
 - ESM only
 
 ## License

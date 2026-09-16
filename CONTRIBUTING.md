@@ -10,7 +10,7 @@ cd ts-lib-template && pnpm install
 pnpm check
 ```
 
-Requires Node.js >= 24 (see `.nvmrc`) and pnpm (managed via `corepack`).
+Requires Node.js ^24.11.0 or >= 26 (see `.nvmrc`) and pnpm (pinned via `packageManager`).
 
 ## Development Commands
 

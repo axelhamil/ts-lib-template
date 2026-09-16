@@ -15,9 +15,9 @@
   },
   "homepage": "https://github.com/axelhamil/ts-lib-template#readme",
   "keywords": [],
-  "packageManager": "pnpm@11.5.2",
+  "packageManager": "pnpm@12.4.2",
   "engines": {
-    "node": ">=24"
+    "node": "^24.11.0 || >=26.0.0"
   },
   "sideEffects": false,
   "publishConfig": {
@@ -52,15 +52,15 @@
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
-    "@arethetypeswrong/core": "^0.18.3",
-    "@biomejs/biome": "^2.4.16",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@vitest/coverage-v8": "^4.1.8",
-    "publint": "^0.3.21",
-    "semantic-release": "^25.0.3",
-    "tsdown": "^0.22.2",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "@arethetypeswrong/core": "^0.18.5",
+    "@biomejs/biome": "^2.5.13",
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/git": "^11.0.1",
+    "@vitest/coverage-v8": "^5.0.1",
+    "publint": "^0.3.24",
+    "semantic-release": "^25.0.9",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
   }
 }

@@ -18,6 +18,6 @@ import {} from 'ts-lib-template';
 
 - Repository: https://github.com/axelhamil/ts-lib-template
 - License: MIT
-- Runtime: Node >= 24, ESM only
+- Runtime: Node ^24.11.0 or >= 26, ESM only
 - Build: tsdown (ESM, dts, sourcemap, minify, treeshake)
 - Types validated with publint + are-the-types-wrong

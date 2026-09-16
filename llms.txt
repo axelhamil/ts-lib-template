@@ -2,7 +2,7 @@
 
 > One-line description
 
-ESM-only TypeScript library. Node >= 24, zero runtime dependencies. Built with tsdown, tested with Vitest, linted with Biome, released with semantic-release.
+ESM-only TypeScript library. Node ^24.11.0 or >= 26, zero runtime dependencies. Built with tsdown, tested with Vitest, linted with Biome, released with semantic-release.
 
 ## Public API
 
