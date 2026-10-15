@@ -5,4 +5,3 @@ coverage/
 *.tgz
 .DS_Store
 .claude/settings.local.json
-CLAUDE.local.md
