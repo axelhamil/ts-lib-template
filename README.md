@@ -17,20 +17,29 @@ A batteries-included TypeScript library template. ESM-only, type-safe, zero-conf
 
 ## Stack
 
-- **TypeScript 7** — native compiler, `strict` + `noUncheckedIndexedAccess` + `isolatedDeclarations` + `verbatimModuleSyntax`
-- **[tsdown](https://tsdown.dev)** — Rolldown-powered bundler (ESM, `.d.ts`, minify, treeshake) with built-in [`publint`](https://publint.dev) + [`are-the-types-wrong`](https://arethetypeswrong.github.io)
-- **[Vitest 5](https://vitest.dev)** — tests + V8 coverage (90% thresholds)
-- **[Biome 2](https://biomejs.dev)** — lint + format in one fast pass
-- **[semantic-release](https://semantic-release.gitbook.io)** — automated versioning & npm publish with provenance
+- **TypeScript 7**: native compiler, `strict` + `noUncheckedIndexedAccess` + `isolatedDeclarations` + `verbatimModuleSyntax`
+- **[tsdown](https://tsdown.dev)**: Rolldown-powered bundler (ESM, `.d.ts`, minify, treeshake) with built-in [`publint`](https://publint.dev) + [`are-the-types-wrong`](https://arethetypeswrong.github.io)
+- **[Vitest 5](https://vitest.dev)**: tests + V8 coverage (90% thresholds)
+- **[Biome 2](https://biomejs.dev)**: lint + format in one fast pass
+- **[release-please](https://github.com/googleapis/release-please)**: release PR with version bump and changelog, npm publish through trusted publishing with provenance
 
 ## Using this template
 
 1. Click **Use this template** on GitHub (or clone).
 2. Find & replace `ts-lib-template` → your package name across the repo.
 3. Update the description, `author`, and `repository` in `package.json`.
-4. Remove `"private": true` from `package.json` when ready to publish.
-5. Add the `NPM_TOKEN` and `GH_TOKEN` secrets in GitHub for releases.
-6. Write your code in `src/`, export it from `src/index.ts`.
+4. Write your code in `src/`, export it from `src/index.ts`.
+5. Set up releases (below) when ready to publish.
+
+## Releases
+
+Conventional Commits drive [release-please](https://github.com/googleapis/release-please). Every push to `main` updates a release PR that bumps `version` in `package.json` and writes `CHANGELOG.md`. Merging it tags the release, creates the GitHub release, and publishes to npm. The project starts at `0.0.0`: the first `feat` releases `0.1.0`, and while in `0.x` a breaking change bumps the minor.
+
+Setup, once per repository:
+
+1. **Bot GitHub App**: the release PR is opened with a GitHub App token, because PRs opened with the default `GITHUB_TOKEN` do not trigger workflows, so CI would never run on them. [Create a GitHub App](https://github.com/settings/apps/new) with webhooks off and the repository permissions **Contents** and **Pull requests** set to read and write, generate a private key, and install the App on the repository. Then set the repository variable `BOT_CLIENT_ID` to its client ID and the secret `BOT_PRIVATE_KEY` to the key. One App serves all your repositories.
+2. **npm trusted publisher**: publish the package once by hand (`npm publish`) so it exists on npmjs.com, then in its settings add a trusted publisher: GitHub Actions, your owner and repository, workflow `release.yml`, no environment. No `NPM_TOKEN` is needed: the `publish` job authenticates with OIDC and npm adds provenance.
+3. **Opt in to publishing**: remove `"private": true` from `package.json` and set the repository variable `NPM_PUBLISH` to `true`. Without that variable the `publish` job is skipped, so the template and repositories derived from it never try to publish by accident.
 
 ## Install
 
@@ -60,15 +69,15 @@ import {} from 'ts-lib-template';
 
 ```
 src/
-  index.ts     # public barrel — export everything from here
+  index.ts     # public barrel, export everything from here
 ```
 
 ## LLM / AI Integration
 
 Ships with [llms.txt](https://llmstxt.org/) files for AI-assisted development:
 
-- **`llms.txt`** — Concise index following the llms.txt standard
-- **`llms-full.txt`** — Complete API reference optimized for LLM context windows
+- **`llms.txt`**: Concise index following the llms.txt standard
+- **`llms-full.txt`**: Complete API reference optimized for LLM context windows
 
 Compatible with [Context7](https://context7.com/) and any tool supporting the llms.txt standard.
 

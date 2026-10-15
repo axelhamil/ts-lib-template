@@ -22,12 +22,12 @@ publishable package, not an application.
 ## Stack
 
 - Node `^24.11.0 || >=26.0.0`, pnpm (pinned in `packageManager`), ESM only
-- TypeScript 7 — `strict`, `noUncheckedIndexedAccess`, `isolatedDeclarations`,
+- TypeScript 7: `strict`, `noUncheckedIndexedAccess`, `isolatedDeclarations`,
   `verbatimModuleSyntax`, `erasableSyntaxOnly`
-- tsdown (Rolldown) — ESM, `.d.ts`, minify, treeshake; publint + attw on build
+- tsdown (Rolldown): ESM, `.d.ts`, minify, treeshake; publint + attw on build
 - Vitest 5 + V8 coverage (90% thresholds on statements, branches, functions, lines)
-- Biome 2 — lint + format
-- semantic-release — Conventional Commits → npm publish with provenance
+- Biome 2: lint + format
+- release-please: Conventional Commits → release PR, then npm trusted publishing with provenance
 
 ## Commands
 
@@ -45,7 +45,7 @@ publishable package, not an application.
 ## Architecture
 
 ```
-src/index.ts       public barrel — the only re-export surface
+src/index.ts       public barrel, the only re-export surface
 tests/*.test.ts    import from `../src/index.js` only
 ```
 
@@ -93,9 +93,13 @@ No inline comments unless the WHY is non-obvious. Explicit `vitest` imports, no 
 
 ## Releases
 
-Conventional Commits drive semantic-release: `feat` → minor, `fix` → patch,
-`docs(readme)` → patch. Releases run on push to `main`. Publishing requires removing
-`"private": true` and setting `NPM_TOKEN` + `GH_TOKEN`.
+Conventional Commits drive release-please (`release-please-config.json`,
+`.release-please-manifest.json`): `feat` → minor, `fix` → patch, breaking → minor while in
+`0.x`. Each push to `main` updates a release PR; merging it tags, releases and writes
+`CHANGELOG.md`. Never edit `version`, the manifest or the changelog by hand. Publishing
+requires removing `"private": true`, the `NPM_PUBLISH=true` repository variable and an npm
+trusted publisher for `release.yml` (OIDC, no `NPM_TOKEN`). The release PR uses the Bot
+GitHub App (`BOT_CLIENT_ID` variable, `BOT_PRIVATE_KEY` secret). Setup: README § Releases.
 
 ## The skill loop
 
@@ -105,8 +109,8 @@ and will it be needed again? Difficulty is not recurrence. Rules stay in this fi
 
 Full procedure: `.agents/skills/skill-lifecycle/SKILL.md`. Read it before capturing.
 
-- **Capture** after the first success — draft, `disable-model-invocation: true`.
-- **Promote** on the second run by *following the draft* — `proven`, flag off.
+- **Capture** after the first success: draft, `disable-model-invocation: true`.
+- **Promote** on the second run by *following the draft*: `proven`, flag off.
 - **Amend or retire** every session that follows a skill: change it, or move
   `last-followed`. Stale 90 days → delete, do not archive. Only amend what this session
   witnessed.

@@ -3,7 +3,7 @@
 # Reads the Claude tool-call JSON on stdin. Exit 0 allows, 2 denies.
 #
 # Fail closed: missing jq still denies. A matcher of adjacent "git commit" lets
-# `git -C . commit` and `bash -c 'git commit'` through — parse argv, then fall
+# `git -C . commit` and `bash -c 'git commit'` through: parse argv, then fall
 # back to "git appears and commit is a word".
 set -uo pipefail
 

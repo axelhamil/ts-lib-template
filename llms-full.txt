@@ -1,4 +1,4 @@
-# ts-lib-template — Full API Reference
+# ts-lib-template: Full API Reference
 
 > One-line description
 
