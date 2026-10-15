@@ -1,10 +1,13 @@
 # AGENTS.md
 
-**This file is the source of truth for agent instructions.** Every agent working here
-reads it — Claude Code through the `@AGENTS.md` import in `CLAUDE.md`, Cursor and the
-tools that follow the AGENTS.md convention directly. Add agent guidance here and nowhere
-else: `CLAUDE.md` is a pointer. Anything written there instead is seen by one tool and
-drifts without a signal.
+**This file is the source of truth for agent instructions.** Claude Code, Cursor, Codex
+and the tools that follow the AGENTS.md convention read it directly. Add agent guidance
+here and nowhere else.
+
+Never create a `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md`, at the root or
+below: Claude Code reads `AGENTS.md` only when no `CLAUDE.md` exists, so one such file
+silently hides this one. What Claude Code writes on its own (auto-memory, the `#`
+shortcut, any "note that down" during a session) goes here too.
 
 ## Session bootstrap
 
@@ -123,24 +126,24 @@ earned.
 | Path | Role |
 |---|---|
 | `AGENTS.md` | Instructions. Source, read by every agent. |
-| `CLAUDE.md` | `@AGENTS.md` and a write ban. Pointer. |
 | `.agents/skills/<name>/SKILL.md` | Procedures. Source. |
 | `.claude/skills` | Symlink to `../.agents/skills`. Claude Code scans no other path. |
 | `.claude/settings.json`, `.cursor/cli.json` | Permissions. Twins; edit together. Skill-loop hooks live in the Claude file alone. |
 | `scripts/skills.sh` | Shape check. Must exit zero before a commit. |
 | `scripts/commit-gate.sh` | Claude PreToolUse: deny `git commit` unless skills.sh is green. |
-| `scripts/agents-check.sh` | Topology + skills.sh. CI runs it. |
+| `scripts/agents-check.sh` | Topology (no `CLAUDE.md`, skills symlink) + skills.sh. CI runs it. |
 
-Measured 2026-09-16 from deisis (2026-08-31, Claude Code 2.1.251 / cursor-agent
-2026.08.25) and the agent-agnostic matrix (2026-09-02): Claude Code loads `CLAUDE.md`
-and `.claude/skills/` only; Cursor loads `AGENTS.md` natively. Re-measure before trusting.
+Claude Code (2.1.277 and later), Cursor and Codex load `AGENTS.md` natively. Claude Code
+falls back to `AGENTS.md` only when no `CLAUDE.md` exists, and loads skills from
+`.claude/skills/` only. `scripts/agents-check.sh` fails on any `CLAUDE.md` or
+`CLAUDE.local.md`. Re-measure before trusting.
 
 Edit skills at `.agents/skills/`, never through the symlink. The symlink is git mode
 `120000`; Windows without `core.symlinks=true` gets a dead text file.
 
 ## What not to do
 
-- Do not write project instructions in `CLAUDE.md`.
+- Do not create a `CLAUDE.md` or `CLAUDE.local.md`: Claude Code would ignore this file.
 - Do not commit secrets, even in examples.
 - Do not mention an agent tool in commit messages.
 - Do not add a skill for a one-off, or for something this file already says.
@@ -154,4 +157,4 @@ Do what was asked. An adjacent problem is reported, not fixed in passing.
 
 - Run the skill loop in full. `scripts/skills.sh` must exit zero.
 - Run `pnpm check`, `pnpm test`, and `pnpm build` when code or config changed.
-- Update this file if tooling or a cross-cutting rule moved. Never `CLAUDE.md`.
+- Update this file if tooling or a cross-cutting rule moved. Never a `CLAUDE.md`.
