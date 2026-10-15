@@ -1,6 +1,6 @@
 {
   "name": "ts-lib-template",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "TypeScript library template. ESM, tsdown, vitest, biome, release-please. Zero config.",
   "type": "module",
