@@ -40,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "out=$(\"${CLAUDE_PROJECT_DIR:-.}/scripts/skills.sh\" 2>&1) || true; printf %s \"$out\" | jq -Rs '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:(\"Skill library — see AGENTS.md § The skill loop. A draft is promoted by following it on its second run; a skill followed this session is either amended or has its last-followed date moved.\\n\" + .)}}'",
+            "command": "out=$(\"${CLAUDE_PROJECT_DIR:-.}/scripts/skills.sh\" 2>&1) || true; printf %s \"$out\" | jq -Rs '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:(\"Skill library: see AGENTS.md § The skill loop. A draft is promoted by following it on its second run; a skill followed this session is either amended or has its last-followed date moved.\\n\" + .)}}'",
             "timeout": 15,
             "statusMessage": "Reading the skill library"
           }

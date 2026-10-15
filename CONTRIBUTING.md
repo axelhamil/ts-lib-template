@@ -24,7 +24,7 @@ Requires Node.js ^24.11.0 or >= 26 (see `.nvmrc`) and pnpm (pinned via `packageM
 
 ## Commit Messages
 
-We use [Conventional Commits](https://www.conventionalcommits.org/) — this drives automated releases via semantic-release.
+We use [Conventional Commits](https://www.conventionalcommits.org/): they drive automated releases via release-please.
 
 ```
 feat: add async resolver
@@ -32,7 +32,7 @@ fix: handle empty input
 docs: clarify API examples
 ```
 
-`feat` bumps minor, `fix` bumps patch, `docs(readme)` bumps patch, others don't release.
+`feat` bumps minor, `fix` bumps patch, `feat!` or `BREAKING CHANGE` bumps major (minor while in `0.x`), others don't release.
 
 ## Submitting a Pull Request
 
@@ -41,4 +41,4 @@ docs: clarify API examples
 3. Run `pnpm check` and `pnpm test`
 4. Open a PR against `main`
 
-Biome handles all formatting and linting — no style guide to memorize.
+Biome handles all formatting and linting: no style guide to memorize.

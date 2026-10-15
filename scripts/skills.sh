@@ -32,7 +32,7 @@ failures=0
 drafts=0
 proven=0
 
-# The front matter only — the body of a skill quotes these keys in its
+# The front matter only: the body of a skill quotes these keys in its
 # templates, and a naive grep over the whole file reads the template as the
 # declaration. That false positive cost a promotion its status line.
 front_matter() {
@@ -117,7 +117,7 @@ for dir in "$skills_dir"/*/; do
   [[ $(age_days "$followed") -lt 0 ]] && clock=$captured
   age=$(age_days "$clock")
   if [[ $age -ge $stale_days ]]; then
-    note="${note:+$note; }stale: $age days — delete it, do not archive it"
+    note="${note:+$note; }stale: $age days, delete it, do not archive it"
     failures=$((failures + 1))
   fi
 
@@ -129,6 +129,6 @@ echo
 echo "$drafts draft(s), $proven proven, stale threshold ${stale_days}d"
 
 if [[ $failures -gt 0 ]]; then
-  echo "$failures problem(s) — the library is not in a shape anyone should trust" >&2
+  echo "$failures problem(s), the library is not in a shape anyone should trust" >&2
   exit 1
 fi
